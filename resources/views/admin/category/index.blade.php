@@ -17,7 +17,7 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Hover Data Table</h3>
+
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -34,31 +34,31 @@
                                 <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                                     <thead>
                                     <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Rendering engine</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Browser</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Platform(s)</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Engine version</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">CSS grade</th>
+                                        <th tabindex="0" aria-controls="example2" rowspan="1" colspan="1">ID</th>
+                                        <th tabindex="0" aria-controls="example2" rowspan="1" colspan="1">分类名称</th>
+                                        <th tabindex="0" aria-controls="example2" rowspan="1" colspan="1">分类别名</th>
+                                        <th tabindex="0" aria-controls="example2" rowspan="1" colspan="1">壁纸数量</th>
                                     </tr>
                                     </thead>
                                     <tbody>
 
                                     <tr role="row">
-                                        <td class="sorting_1">Gecko</td>
-                                        <td>Firefox 1.0</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.7</td>
-                                        <td>A</td>
+                                        <td>1</td>
+                                        <td>天策</td>
+                                        <td>tc</td>
+                                        <td>87</td>
                                     </tr>
 
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-sm-5">
-                                <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+                                <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">一共有N个分类</div>
                             </div>
+
                             <div class="col-sm-7">
                                 <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
                                     <ul class="pagination">

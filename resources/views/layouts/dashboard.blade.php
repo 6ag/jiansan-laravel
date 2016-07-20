@@ -15,6 +15,10 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script src="{{ url('assets/js/jquery-2.2.3.min.js') }}"></script>
+    <script src="{{ url('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url('assets/js/app.min.js') }}"></script>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -29,9 +33,7 @@
     @include('layouts.Common.footer')
 </div>
 
-<script src="{{ url('assets/js/jquery-2.2.3.min.js') }}"></script>
-<script src="{{ url('assets/js/bootstrap.min.js') }}"></script>
-<script src="{{ url('assets/js/app.min.js') }}"></script>
+
 
 </body>
 </html>

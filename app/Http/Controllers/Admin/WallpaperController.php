@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
 
 class WallpaperController extends BaseController
 {
@@ -17,7 +18,7 @@ class WallpaperController extends BaseController
     // get admin/wallpaper/{wallpaper} 显示单个壁纸信息
     public function show()
     {
-
+        
     }
 
     // get admin/wallpaper/create 添加壁纸 create、store是连续的操作,create获取创建前需要的数据,store存储数据
@@ -49,4 +50,22 @@ class WallpaperController extends BaseController
     {
 
     }
+
+    /**
+     * 上传图片到临时目录,并返回路径
+     * @param Request $request
+     * @return string 图片相对网站根目录路径
+     */
+    public function upload(Request $request)
+    {
+        // 单张图片处理
+        $file = $request->file('Filedata');
+
+        if ($file->isValid()) {
+            $file->move(base_path('public/temp/'), $file->getClientOriginalName());
+            $tempPath = 'temp/'.$file->getClientOriginalName();
+            return $tempPath;
+        }
+    }
+    
 }

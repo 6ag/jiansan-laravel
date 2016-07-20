@@ -1,14 +1,9 @@
 /*
-Uploadify
+UploadiFive
 Copyright (c) 2012 Reactive Apps, Ronnie Garcia
-Released under the MIT License <http://www.opensource.org/licenses/mit-license.php> 
 */
 
-.uploadify {
-	position: relative;
-	margin-bottom: 1em;
-}
-.uploadify-button {
+.uploadifive-button {
 	background-color: #505050;
 	background-image: linear-gradient(bottom, #505050 0%, #707070 100%);
 	background-image: -o-linear-gradient(bottom, #505050 0%, #707070 100%);
@@ -32,9 +27,10 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 	font: bold 12px Arial, Helvetica, sans-serif;
 	text-align: center;
 	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+	text-transform: uppercase;
 	width: 100%;
 }
-.uploadify:hover .uploadify-button {
+.uploadifive-button:hover {
 	background-color: #606060;
 	background-image: linear-gradient(top, #606060 0%, #808080 100%);
 	background-image: -o-linear-gradient(top, #606060 0%, #808080 100%);
@@ -50,43 +46,32 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 	);
 	background-position: center bottom;
 }
-.uploadify-button.disabled {
-	background-color: #D0D0D0;
-	color: #808080;
-}
-.uploadify-queue {
-	margin-bottom: 1em;
-}
-.uploadify-queue-item {
+.uploadifive-queue-item {
 	background-color: #F5F5F5;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	font: 11px Verdana, Geneva, sans-serif;
-	margin-top: 5px;
-	max-width: 350px;
-	padding: 10px;
+	border-bottom: 1px dotted #D5D5D5;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	font: 12px Arial, Helvetica, Sans-serif;
+	margin-top: 3px;
+	padding: 15px;
 }
-.uploadify-error {
-	background-color: #FDE5DD !important;
-}
-.uploadify-queue-item .cancel a {
-	background: url('../img/uploadify-cancel.png') 0 0 no-repeat;
+.uploadifive-queue-item .close {
+	background: url('uploadifive-cancel.png') 0 0 no-repeat;
+	display: block;
 	float: right;
-	height:	16px;
+	height: 16px;
 	text-indent: -9999px;
 	width: 16px;
 }
-.uploadify-queue-item.completed {
-	background-color: #E5E5E5;
-}
-.uploadify-progress {
-	background-color: #E5E5E5;
-	margin-top: 10px;
+.uploadifive-queue-item .progress {
+	border: 1px solid #D0D0D0;
+	height: 3px;
+	margin-top: 5px;
 	width: 100%;
 }
-.uploadify-progress-bar {
-	background-color: #0099FF;
+.uploadifive-queue-item .progress-bar {
+	background-color: #0072BC;
 	height: 3px;
-	width: 1px;
+	width: 0;
 }

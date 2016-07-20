@@ -14,8 +14,15 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
     // 已经登录
     Route::group(['middleware' => ['admin.login']], function () {
+
+        // 后台首页
         Route::get('index', 'IndexController@index')->name('admin.index');
+
+        // 壁纸
         Route::resource('wallpaper', 'WallpaperController');
+        Route::post('upload', 'WallPaperController@upload')->name('admin.upload');
+        
+        // 分类
         Route::resource('category', 'CategoryController');
     });
 });

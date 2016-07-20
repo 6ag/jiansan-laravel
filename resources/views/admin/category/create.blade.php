@@ -17,35 +17,26 @@
 
             <div class="box box-warning">
                 <div class="box-header with-border">
-                    <h3 class="box-title">General Elements</h3>
+
                 </div>
-                <!-- /.box-header -->
                 <div class="box-body">
-                    <form role="form">
-
-                        <!-- 选择门派 -->
+                    <form role="form" action="#" method="post">
                         <div class="form-group">
-                            <label>Select</label>
-                            <select class="form-control">
-                                <option>option 1</option>
-                                <option>option 2</option>
-                                <option>option 3</option>
-                                <option>option 4</option>
-                                <option>option 5</option>
-                            </select>
+                            <label>分类名称</label>
+                            <input type="text" class="form-control" placeholder="分类名称 例如: 天策">
                         </div>
 
-                        <!-- text input -->
                         <div class="form-group">
-                            <label>Text</label>
-                            <input type="text" class="form-control" placeholder="Enter ...">
+                            <label>分类别名</label>
+                            <input type="text" class="form-control" placeholder="分类别名 例如: tc">
                         </div>
 
-
-
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block btn-flat">创建分类</button>
+                        </div>
                     </form>
                 </div>
-                <!-- /.box-body -->
+
             </div>
 
         </section>
