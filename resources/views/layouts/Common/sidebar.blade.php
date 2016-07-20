@@ -1,22 +1,19 @@
-<!-- Left side column. contains the logo and sidebar -->
+<!-- 左侧边栏 -->
 <aside class="main-sidebar">
-
-    <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
 
-        <!-- Sidebar user panel (optional) -->
+        <!-- 用户信息 -->
         <div class="user-panel">
             <div class="pull-left image">
                 <img src="{{ url('assets/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
-                <!-- Status -->
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <p>{{ Session::get('user')->name }}</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
             </div>
         </div>
 
-        <!-- search form (Optional) -->
+        <!-- 搜索表单 -->
         <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Search...">
@@ -26,31 +23,43 @@
               </span>
             </div>
         </form>
-        <!-- /.search form -->
 
-        <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">HEADER</li>
-            <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+            <li class="header">数据管理</li>
+
+            <li><a href="{{ url('admin/index') }}"><i class="fa fa-dashboard"></i> <span>后台首页</span></a></li>
+
             <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+                <a href="#">
+                    <i class="fa fa-database"></i> <span>壁纸管理</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="#">Link in level 2</a></li>
-                    <li><a href="#">Link in level 2</a></li>
+                <ul class="treeview-menu" style="display: none;">
+                    <li><a href="#"><i class="fa fa-cloud-upload"></i> 上传壁纸</a></li>
+                    <li><a href="{{ url('admin/wallpaper') }}"><i class="fa fa-list-alt"></i> 管理壁纸</a></li>
                 </ul>
             </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-circle-o-notch"></i> <span>系统管理</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu" style="display: none;">
+                    <li><a href="#"><i class="fa fa-cog"></i> 系统设置</a></li>
+                </ul>
+            </li>
+
         </ul>
-        <!-- /.sidebar-menu -->
+
     </section>
-    <!-- /.sidebar -->
 </aside>
 
+<!-- 右隐藏侧边栏 -->
 <aside class="control-sidebar control-sidebar-dark">
     <!-- Create the tabs -->
     <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
@@ -80,7 +89,7 @@
             <h3 class="control-sidebar-heading">Tasks Progress</h3>
             <ul class="control-sidebar-menu">
                 <li>
-                    <a href="javascript::;">
+                    <a href="javascript:;">
                         <h4 class="control-sidebar-subheading">
                             Custom Template Design
                 <span class="pull-right-container">

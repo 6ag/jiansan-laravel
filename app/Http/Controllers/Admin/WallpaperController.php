@@ -11,7 +11,7 @@ class WallpaperController extends BaseController
     // get admin/wallpaper  全部壁纸列表
     public function index()
     {
-
+        return view('admin/wallpaper/wallpaper');
     }
     
     // get admin/wallpaper/{wallpaper} 显示单个壁纸信息
