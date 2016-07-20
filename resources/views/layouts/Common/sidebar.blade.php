@@ -25,26 +25,28 @@
         </form>
 
         <ul class="sidebar-menu">
-            <li class="header">数据管理</li>
+            <li class="header">后台管理</li>
 
-            <li><a href="{{ url('admin/index') }}"><i class="fa fa-dashboard"></i> <span>后台首页</span></a></li>
+            <li><a href="{{ url('admin/index') }}"><i class="fa fa-dashboard"></i> <span> 仪表盘</span></a></li>
 
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-database"></i> <span>壁纸管理</span>
+                    <i class="fa fa-database"></i> <span> 数据管理</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu" style="display: none;">
-                    <li><a href="#"><i class="fa fa-cloud-upload"></i> 上传壁纸</a></li>
+                    <li><a href="{{ url('admin/category/create') }}"><i class="fa fa-edit"></i> 添加分类</a></li>
+                    <li><a href="{{ url('admin/category') }}"><i class="fa fa-folder"></i> 管理分类</a></li>
+                    <li><a href="{{ url('admin/wallpaper/create') }}"><i class="fa fa-cloud-upload"></i> 添加壁纸</a></li>
                     <li><a href="{{ url('admin/wallpaper') }}"><i class="fa fa-list-alt"></i> 管理壁纸</a></li>
                 </ul>
             </li>
 
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-circle-o-notch"></i> <span>系统管理</span>
+                    <i class="fa fa-circle-o-notch"></i> <span> 系统管理</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>

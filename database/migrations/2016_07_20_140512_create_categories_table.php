@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWallpapersTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,14 @@ class CreateWallpapersTable extends Migration
      */
     public function up()
     {
-        Schema::create('wallpapers', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('category');
-            $table->string('path');
-            $table->string('smallpath');
-            $table->integer('view')->default(0);
+            $table->string('name');
+            $table->string('alias');
             $table->timestamps();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *
@@ -29,6 +27,6 @@ class CreateWallpapersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('wallpapers');
+        Schema::drop('categories');
     }
 }
