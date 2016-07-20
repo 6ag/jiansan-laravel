@@ -15,7 +15,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     // 已经登录
     Route::group(['middleware' => ['admin.login']], function () {
         Route::get('index', 'IndexController@index')->name('admin.index');
-        Route::get('info', 'IndexController@info')->name('admin.info');
         Route::resource('wallpaper', 'WallpaperController');
         Route::resource('category', 'CategoryController');
     });
