@@ -50,7 +50,7 @@
                                         <td>1.7</td>
                                         <td>A</td>
                                     </tr>
-                                    
+
                                     </tbody>
                                 </table>
                             </div>
