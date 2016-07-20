@@ -22,7 +22,7 @@ git clone https://github.com/6ag/jiansan-laravel.git
 
 **2.新建homestead站点**
 
-使用homestead新建站点，并解析域名到项目的public目录。首先进入虚拟机环境，新建站点：
+使用homestead新建站点，并解析域名到项目的 `public` 目录。首先进入虚拟机环境，新建站点：
 
 *注意：* 这里的目录要根据自己安装的路径来写的，最终解析到 `public` 目录即可，别忘了修改本地 `hosts` 文件和重启 `nginx` 。
 
@@ -54,8 +54,7 @@ php artisan migrate
 
 **6.注册管理员账号**
 
-访问 `http://www.jiansan.com/admin/login` ，注册并登录即可。
-
+访问 `http://www.jiansan.com/` ，注册并登录即可。
 
 ## 许可
 

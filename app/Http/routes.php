@@ -1,5 +1,9 @@
 <?php
 
+Route::get('/', function () {
+    return redirect()->route('admin.index');
+});
+
 // 后台路由组
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
