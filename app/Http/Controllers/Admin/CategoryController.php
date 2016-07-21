@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Api\V1\Model\Category;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends BaseController
 {
@@ -27,25 +29,41 @@ class CategoryController extends BaseController
     }
 
     // post admin/category 添加分类提交处理
-    public function store()
+    public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'unique:categories'],
+            'alias' => ['required', 'unique:categories'],
+        ], [
+            'name.required' => '名称不能为空',
+            'name.unique' => '名称已经存在',
+            'alias.required' => '别名不能为空',
+            'alias.unique' => '别名已经存在',
+        ]);
 
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+
+        // 创建分类
+        Category::create($request->except(['_token']));
+        return redirect()->route('admin.category.index');
     }
 
     // get admin/category/{category}/edit 编辑分类 edit、update也是一组连续的操作,edit获取需要编辑的数据的信息,update更新修改后的信息
-    public function edit($art_id)
+    public function edit($id)
     {
 
     }
 
     // put admin/category/{category} 更新分类
-    public function update($art_id)
+    public function update($id)
     {
 
     }
 
     // delete admin/category/{category} 删除分类
-    public function destroy($art_id)
+    public function destroy($id)
     {
 
     }

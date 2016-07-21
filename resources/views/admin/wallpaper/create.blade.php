@@ -20,25 +20,25 @@
 
                 </div>
                 <div class="box-body">
-                    <form role="form">
+                    <form role="form" action="{{ url('admin/wallpaper') }}" method="post">
                     {{ csrf_field() }}
                     <!-- 选择门派 -->
                         <div class="form-group">
                             <label>壁纸分类</label>
-                            <select class="form-control">
-
-                                <option>天策</option>
-
+                            <select class="form-control" name="category">
+                                @foreach($categories as $category)
+                                <option value="{{ $category->alias }}">{{ $category->name }}</option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="form-group">
-
                             <input id="imagePaths" type="hidden" value="" name="imagePaths">
                             <input id="file_upload" type="file" multiple="true">
                             <script src="{{ url('vendor/uploadifive/jquery.uploadifive.min.js') }}" type="text/javascript"></script>
                             <link rel="stylesheet" type="text/css" href="{{ url('vendor/uploadifive/uploadifive.css') }}">
                             <script type="text/javascript">
+                                // 用于拼接图片路径
                                 var imagePaths = '';
                                 $(function() {
                                     $('#file_upload').uploadifive({
@@ -62,19 +62,43 @@
 
                                             // 临时预览图
                                             createThumb(imagePath);
-                                        }
+
+                                            // 设置提交表单按钮可用
+                                            $('#submit').attr('disabled', false);
+                                        },
+                                        onUpload : function(file) {
+                                            // 设置提交表单按钮不可用
+                                            $('#submit').attr('disabled', true);
+                                        },
                                     });
                                 });
 
                                 // 创建缩略图节点
                                 function createThumb(imagePath) {
-                                    var thumb = $("<div class='col-sm-6 col-md-3'>").appendTo($("#thumbnail"));
-                                    var col = $("<a href='#' class='thumbnail'>").appendTo(thumb);
-                                    var a = $("<img src=" + "/" + imagePath + ">").appendTo(col);
+                                    var thumb = $("<div class='col-sm-6 col-md-3' id='" + imagePath + "'>").appendTo($("#thumbnail"));
+                                    var span = $("<span class='thumbnail'>").appendTo(thumb);
+                                    var img = $("<img src='" + "/" + imagePath + "'>").appendTo(span);
+                                    var close = $("<a id='closeimg' href='javascript:;' onclick=\"removeImage(this, '" + imagePath + "');\">").appendTo(span);
                                 }
 
-                            </script>
+                                // 移除图片
+                                function removeImage(close, imagePath) {
+                                    // 移除缩略图元素
+                                    close.parentElement.parentElement.remove();
 
+                                    // 移除缩略图路径
+                                    if (imagePaths.match(imagePath + ',')) { // 删除不是末尾一张
+                                        imagePaths = imagePaths.replace(imagePath + ',', "");
+                                    } else if (imagePaths.match(',' + imagePath)) { // 删除末尾一张
+                                        imagePaths = imagePaths.replace(',' + imagePath, "");
+                                    } else { // 删除最后剩余的一张
+                                        imagePaths = imagePaths.replace(imagePath, "");
+                                    }
+
+                                    // 赋值给隐藏域
+                                    $('input[name=imagePaths]').val(imagePaths);
+                                }
+                            </script>
                         </div>
 
                         <div class="form-group">
@@ -84,7 +108,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block btn-flat">提交到数据库</button>
+                            <button id="submit" type="submit" class="btn btn-primary btn-block btn-flat">提交到数据库</button>
                         </div>
 
                     </form>

@@ -20,15 +20,16 @@
 
                 </div>
                 <div class="box-body">
-                    <form role="form" action="#" method="post">
+                    <form role="form" action="{{ url('admin/category') }}" method="post">
+                        {{ csrf_field() }}
                         <div class="form-group">
                             <label>分类名称</label>
-                            <input type="text" class="form-control" placeholder="分类名称 例如: 天策">
+                            <input type="text" class="form-control" placeholder="分类名称 例如: 天策" name="name">
                         </div>
 
                         <div class="form-group">
                             <label>分类别名</label>
-                            <input type="text" class="form-control" placeholder="分类别名 例如: tc">
+                            <input type="text" class="form-control" placeholder="分类别名 例如: tc" name="alias">
                         </div>
 
                         <div class="form-group">

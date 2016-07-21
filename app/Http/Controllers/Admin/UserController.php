@@ -23,14 +23,16 @@ class UserController extends BaseController
 
             // 验证表单
             $rules = [
-                'name' => ['required', 'between:5,16',],
-                'email' => ['required'],
+                'name' => ['required', 'between:5,16', 'unique:users'],
+                'email' => ['required', 'unique:users'],
                 'password' => ['required', 'between:6,16', 'confirmed'],
             ];
             $message = [
                 'name.required' => '用户名为必填项',
+                'name.unique' => '用户名已经存在',
                 'name.between' => '用户名长度必须是6-16',
                 'email.required' => '邮箱为必填项',
+                'email.unique' => '邮箱已经存在',
                 'password.required' => '密码为必填项',
                 'password.between' => '密码长度必须是6-16',
                 'password.confirmed' => '两次输入的密码不一致',
@@ -38,13 +40,6 @@ class UserController extends BaseController
             $validator = Validator::make($request->all(), $rules, $message);
             if ($validator->fails()) {
                 return back()->withErrors($validator);
-            }
-
-            // 验证用户名和邮箱是否存在
-            if (User::where('name', $request['name'])->first()) {
-                return back()->with('errors', '用户名已经存在');
-            } elseif (User::where('email', $request['email'])->first()) {
-                return back()->with('errors', '邮箱已经存在');
             }
 
             // 创建用户
@@ -72,11 +67,13 @@ class UserController extends BaseController
         if ($request->method() === 'POST') {
             // 验证输入
             $rules = [
-                'email' => ['required'],
+                'email' => ['required', 'email', 'exists:users'],
                 'password' => ['required', 'between:6,16'],
             ];
             $message = [
+                'email.exists' => '邮箱不存在',
                 'email.required' => '邮箱为必填项',
+                'email.email' => '邮箱格式不合法',
                 'password.required' => '密码为必填项',
                 'password.between' => '密码长度必须是6-16',
             ];
@@ -92,7 +89,7 @@ class UserController extends BaseController
                 Session::put('user', $user);
                 return redirect()->route('admin.index');
             }
-            return back()->with('errors', '邮箱或密码错误!');
+            return back()->with('errors', '管理员密码错误');
         }
 
         return view('admin.login.login');

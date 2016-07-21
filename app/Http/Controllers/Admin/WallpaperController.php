@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Api\V1\Model\Category;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Illuminate\Support\Facades\Input;
 
 class WallpaperController extends BaseController
 {
@@ -24,29 +24,30 @@ class WallpaperController extends BaseController
     // get admin/wallpaper/create 添加壁纸 create、store是连续的操作,create获取创建前需要的数据,store存储数据
     public function create()
     {
-        return view('admin/wallpaper/create');
+        $categories = Category::all();
+        return view('admin/wallpaper/create', compact('categories'));
     }
 
     // post admin/wallpaper 添加壁纸提交处理
-    public function store()
+    public function store(Request $request)
     {
-        
+        dd($request);
     }
 
     // get admin/wallpaper/{wallpaper}/edit 编辑壁纸 edit、update也是一组连续的操作,edit获取需要编辑的数据的信息,update更新修改后的信息
-    public function edit($art_id)
+    public function edit($id)
     {
         
     }
 
     // put admin/wallpaper/{wallpaper} 更新壁纸
-    public function update($art_id)
+    public function update($id)
     {
 
     }
 
     // delete admin/wallpaper/{wallpaper} 删除壁纸
-    public function destroy($art_id)
+    public function destroy($id)
     {
 
     }
