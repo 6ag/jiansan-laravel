@@ -35,5 +35,5 @@ $api = app('Dingo\Api\Routing\Router');
 
 // 配置api版本和路由
 $api->version('v1', ['namespace' => 'App\Http\Api\V1\Controllers'], function ($api) {
-    
+    $api->get('get-categories', 'CategoryController@getCategories')->name('getCategories');
 });
