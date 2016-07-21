@@ -19,6 +19,7 @@
     <script src="{{ url('assets/js/jquery-2.2.3.min.js') }}"></script>
     <script src="{{ url('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ url('assets/js/app.min.js') }}"></script>
+    <script src="{{ url('vendor/layer/layer.js') }}"></script>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">

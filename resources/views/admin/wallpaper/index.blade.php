@@ -17,60 +17,65 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Hover Data Table</h3>
+                    @if(is_object($errors) && count($errors) > 0)
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <p>{{ $errors->first() }}</p>
+                        </div>
+                    @endif
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                    <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap">
                         <div class="row">
                             <div class="col-sm-6">
 
                             </div>
                             <div class="col-sm-6">
 
-                            </div>
-                        </div><div class="row">
-                            <div class="col-sm-12">
-                                <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Rendering engine</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Browser</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Platform(s)</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Engine version</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">CSS grade</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    <tr role="row">
-                                        <td class="sorting_1">Gecko</td>
-                                        <td>Firefox 1.0</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.7</td>
-                                        <td>A</td>
-                                    </tr>
-
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
                         <div class="row">
+
+                            @foreach($wallpapers as $wallpaper)
+                                <div class="col-lg-2">
+                                    <form role="form" action="{{ url('admin/wallpaper/' . $wallpaper->id) }}" method="post">
+                                        {{ csrf_field() }}
+                                        {{ method_field('put') }}
+                                        <div class="thumbnail">
+                                            <img class="img-responsive" src="{{ url($wallpaper->bigpath) }}" style="height: 300px;"/>
+                                            <div class="caption">
+                                                <div class="form-group">
+                                                    <input style="width: 100%; margin-bottom: 5px;" class="form-control" type="text" value="{{ $wallpaper->bigpath }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input style="width: 100%; margin-bottom: 5px;" class="form-control" type="text" value="{{ $wallpaper->smallpath }}">
+                                                </div>
+                                                <div class="form-group" style="width: 100%; margin-bottom: 5px;">
+                                                    <select style="width: 100%;" class="form-control" name="category">
+                                                        @foreach($categories as $category)
+                                                            <option value="{{ $category->alias }}" {{ $wallpaper->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div style="text-align: center">
+                                                    <button type="submit" class="btn btn-primary">更新</button>
+                                                    <a href="javascript:;" onclick="deleteWallpaper({{ $wallpaper->id }})" class="btn btn-default" role="button">删除</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            @endforeach
+
+                        </div>
+                        <div class="row">
                             <div class="col-sm-5">
-                                <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+                                <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">一共有{{ $wallpapers->total() }}个壁纸</div>
                             </div>
                             <div class="col-sm-7">
                                 <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-                                    <ul class="pagination">
-                                        <li class="paginate_button previous disabled" id="example2_previous"><a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0">Previous</a></li>
-                                        <li class="paginate_button active"><a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0">1</a></li>
-                                        <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0">2</a></li>
-                                        <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="3" tabindex="0">3</a></li>
-                                        <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="4" tabindex="0">4</a></li>
-                                        <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="5" tabindex="0">5</a></li>
-                                        <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="6" tabindex="0">6</a></li>
-                                        <li class="paginate_button next" id="example2_next"><a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0">Next</a></li>
-                                    </ul>
+                                    {{ $wallpapers->links() }}
                                 </div>
                             </div>
                         </div>
@@ -83,5 +88,25 @@
 
     </div>
 @endsection
+
+<script>
+    // 删除壁纸
+    function deleteWallpaper(id) {
+        layer.confirm('您确定要删除这个壁纸吗？', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            $.post("{{url('admin/wallpaper')}}/" + id, {'_token' : '{{ csrf_token() }}', '_method' : 'delete'}, function(data) {
+                if (data.status == 1) {
+                    layer.msg(data.msg, {icon: 6});
+                } else {
+                    layer.msg(data.msg, {icon: 5});
+                }
+                window.location.reload();
+            });
+        }, function(){
+            // 取消
+        });
+    }
+</script>
 
 

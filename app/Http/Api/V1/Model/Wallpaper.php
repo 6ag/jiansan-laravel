@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Wallpaper extends Model
 {
     protected $table = 'wallpapers';
+    protected $guarded = [];
 }

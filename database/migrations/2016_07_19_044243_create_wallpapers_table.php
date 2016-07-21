@@ -14,8 +14,8 @@ class CreateWallpapersTable extends Migration
     {
         Schema::create('wallpapers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('category');
-            $table->string('path');
+            $table->tinyInteger('category_id');
+            $table->string('bigpath');
             $table->string('smallpath');
             $table->integer('view')->default(0);
             $table->timestamps();

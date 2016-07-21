@@ -13,7 +13,8 @@ class CategoryController extends BaseController
     // get admin/category  全部分类列表
     public function index()
     {
-        return view('admin/category/index');
+        $categories = Category::orderBy('id', 'asc')->paginate(15);
+        return view('admin/category/index', compact('categories'));
     }
 
     // get admin/category/{category} 显示单个分类信息
