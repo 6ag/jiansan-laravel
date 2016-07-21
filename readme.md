@@ -54,9 +54,17 @@ cp .env.example .env
 php artisan migrate
 ```
 
-**6.注册管理员账号**
+**6.填充基础数据**
 
-访问 `http://www.jiansan.com/` ，注册并登录即可。
+添加分类数据和管理员信息，填充后默认管理员账号 `admin` ， 邮箱 `admin@6ag.cn` ，密码 `123456` 。
+
+```shell
+php artisan db:seed
+```
+
+**7.注册管理员账号**
+
+访问 `http://www.jiansan.com/` ，使用管理员账号登录即可。
 
 ## 许可
 

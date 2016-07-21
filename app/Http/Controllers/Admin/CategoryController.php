@@ -46,7 +46,7 @@ class CategoryController extends BaseController
         }
 
         // 创建分类
-        Category::create($request->except(['_token']));
+        Category::create($request->except('_token'));
         return redirect()->route('admin.category.index');
     }
 

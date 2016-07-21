@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -22,12 +23,11 @@ class UserController extends BaseController
         if ($request->method() === 'POST') {
 
             // 验证表单
-            $rules = [
+            $validator = Validator::make($request->all(), [
                 'name' => ['required', 'between:5,16', 'unique:users'],
                 'email' => ['required', 'unique:users'],
                 'password' => ['required', 'between:6,16', 'confirmed'],
-            ];
-            $message = [
+            ], [
                 'name.required' => '用户名为必填项',
                 'name.unique' => '用户名已经存在',
                 'name.between' => '用户名长度必须是6-16',
@@ -36,19 +36,18 @@ class UserController extends BaseController
                 'password.required' => '密码为必填项',
                 'password.between' => '密码长度必须是6-16',
                 'password.confirmed' => '两次输入的密码不一致',
-            ];
-            $validator = Validator::make($request->all(), $rules, $message);
+            ]);
             if ($validator->fails()) {
                 return back()->withErrors($validator);
             }
 
             // 创建用户
             $user = User::create($request->except(['_token', 'password', 'password_confirmation']));
-            $user->password = Crypt::encrypt($request['password']);
+            $user->password = bcrypt($request->password);
             $user->is_admin = 1; // 是管理员
             $user->save();
 
-            return redirect()->route('admin.login')->with(['email' => $request['email'], 'password' => $request['password']]);
+            return redirect()->route('admin.login')->with(['email' => $request->email, 'password' => $request->password]);
         }
         return view('admin.login.register');
     }
@@ -66,26 +65,29 @@ class UserController extends BaseController
         }
         if ($request->method() === 'POST') {
             // 验证输入
-            $rules = [
+            $validator = Validator::make($request->all(), [
                 'email' => ['required', 'email', 'exists:users'],
                 'password' => ['required', 'between:6,16'],
-            ];
-            $message = [
+            ], [
                 'email.exists' => '邮箱不存在',
                 'email.required' => '邮箱为必填项',
                 'email.email' => '邮箱格式不合法',
                 'password.required' => '密码为必填项',
                 'password.between' => '密码长度必须是6-16',
-            ];
-            $validator = Validator::make($request->all(), $rules, $message);
+            ]);
             if ($validator->fails()) {
                 return back()->withErrors($validator);
             }
 
             // 查询用户信息
-            $user = User::where('email', $request['email'])->where('is_admin', 1)->first();
-            if ($user && $request['password'] == Crypt::decrypt($user->password)) {
+            $user = User::where('email', $request->email)->where('is_admin', 1)->first();
+            if ($user && Hash::check($request->password, $user->password)) {
                 // 登录成功
+                if (Hash::needsRehash($user->password)) {
+                    $user->password = bcrypt($request->password);
+                    $user->save();
+                }
+                
                 Session::put('user', $user);
                 return redirect()->route('admin.index');
             }
