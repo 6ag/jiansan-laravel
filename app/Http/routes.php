@@ -24,6 +24,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         
         // 分类
         Route::resource('category', 'CategoryController');
+
+        // 配置
+        Route::resource('option', 'OptionController');
     });
 });
 

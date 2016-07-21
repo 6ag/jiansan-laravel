@@ -27,32 +27,32 @@
         <ul class="sidebar-menu">
             <li class="header">后台管理</li>
 
-            <li><a href="{{ url('admin/index') }}"><i class="fa fa-dashboard"></i> <span> 仪表盘</span></a></li>
+            <li class="{{ Request::is('admin/index') ? 'active' : '' }}"><a href="{{ url('admin/index') }}"><i class="fa fa-dashboard"></i> <span> 仪表盘</span></a></li>
 
-            <li class="treeview">
+            <li class="treeview {{ (Request::is('admin/category/create') || Request::is('admin/category') || Request::is('admin/wallpaper/create') || Request::is('admin/wallpaper')) ? 'active' : '' }}">
                 <a href="#">
                     <i class="fa fa-database"></i> <span> 数据管理</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
-                <ul class="treeview-menu" style="display: none;">
-                    <li><a href="{{ url('admin/category/create') }}"><i class="fa fa-edit"></i> 添加分类</a></li>
-                    <li><a href="{{ url('admin/category') }}"><i class="fa fa-folder"></i> 管理分类</a></li>
-                    <li><a href="{{ url('admin/wallpaper/create') }}"><i class="fa fa-cloud-upload"></i> 添加壁纸</a></li>
-                    <li><a href="{{ url('admin/wallpaper') }}"><i class="fa fa-list-alt"></i> 管理壁纸</a></li>
+                <ul class="treeview-menu" style="display: {{ (Request::is('admin/category/create') || Request::is('admin/category') || Request::is('admin/wallpaper/create') || Request::is('admin/wallpaper')) ? 'block' : 'none' }};">
+                    <li class="{{ Request::is('admin/category/create') ? 'active' : '' }}"><a href="{{ url('admin/category/create') }}"><i class="fa fa-edit"></i> 添加分类</a></li>
+                    <li class="{{ Request::is('admin/category') ? 'active' : '' }}"><a href="{{ url('admin/category') }}"><i class="fa fa-folder"></i> 管理分类</a></li>
+                    <li class="{{ Request::is('admin/wallpaper/create') ? 'active' : '' }}"><a href="{{ url('admin/wallpaper/create') }}"><i class="fa fa-cloud-upload"></i> 添加壁纸</a></li>
+                    <li class="{{ Request::is('admin/wallpaper') ? 'active' : '' }}"><a href="{{ url('admin/wallpaper') }}"><i class="fa fa-list-alt"></i> 管理壁纸</a></li>
                 </ul>
             </li>
 
-            <li class="treeview">
+            <li class="treeview {{ Request::is('admin/option') ? 'active' : '' }}">
                 <a href="#">
                     <i class="fa fa-circle-o-notch"></i> <span> 系统管理</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
-                <ul class="treeview-menu" style="display: none;">
-                    <li><a href="#"><i class="fa fa-cog"></i> 系统设置</a></li>
+                <ul class="treeview-menu" style="display: {{ Request::is('admin/option') ? 'block' : 'none' }};">
+                    <li class="{{ Request::is('admin/option') ? 'active' : '' }}"><a href="{{ url('admin/option') }}"><i class="fa fa-cog"></i> 系统设置</a></li>
                 </ul>
             </li>
 

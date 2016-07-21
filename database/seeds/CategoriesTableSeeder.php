@@ -12,56 +12,43 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         DB::table('categories')->insert([
-            'name' => '大侠',
-            'alias' => 'daxia',
-        ]);
-        DB::table('categories')->insert([
-            'name' => '天策',
-            'alias' => 'tiance',
-        ]);
-        DB::table('categories')->insert([
-            'name' => '纯阳',
-            'alias' => 'chunyang',
-        ]);
-        DB::table('categories')->insert([
-            'name' => '万花',
-            'alias' => 'wanhua',
-        ]);
-        DB::table('categories')->insert([
-            'name' => '藏剑',
-            'alias' => 'cangjian',
-        ]);
-        DB::table('categories')->insert([
-            'name' => '唐门',
-            'alias' => 'tangmen',
-        ]);
-        DB::table('categories')->insert([
-            'name' => '七秀',
-            'alias' => 'qixiu',
-        ]);
-        DB::table('categories')->insert([
-            'name' => '少林',
-            'alias' => 'shaolin',
-        ]);
-        DB::table('categories')->insert([
-            'name' => '五毒',
-            'alias' => 'wudu',
-        ]);
-        DB::table('categories')->insert([
-            'name' => '明教',
-            'alias' => 'mingjiao',
-        ]);
-        DB::table('categories')->insert([
-            'name' => '丐帮',
-            'alias' => 'gaibang',
-        ]);
-        DB::table('categories')->insert([
-            'name' => '苍云',
-            'alias' => 'cangyun',
-        ]);
-        DB::table('categories')->insert([
-            'name' => '长歌',
-            'alias' => 'changge',
+            [
+                'name' => '大侠',
+                'alias' => 'daxia',
+            ],[
+                'name' => '纯阳',
+                'alias' => 'chunyang',
+            ],[
+                'name' => '万花',
+                'alias' => 'wanhua',
+            ],[
+                'name' => '藏剑',
+                'alias' => 'cangjian',
+            ],[
+                'name' => '唐门',
+                'alias' => 'tangmen',
+            ],[
+                'name' => '七秀',
+                'alias' => 'qixiu',
+            ],[
+                'name' => '少林',
+                'alias' => 'shaolin',
+            ],[
+                'name' => '五毒',
+                'alias' => 'wudu',
+            ],[
+                'name' => '明教',
+                'alias' => 'mingjiao',
+            ],[
+                'name' => '丐帮',
+                'alias' => 'gaibang',
+            ],[
+                'name' => '苍云',
+                'alias' => 'cangyun',
+            ],[
+                'name' => '长歌',
+                'alias' => 'changge',
+            ]
         ]);
     }
 }

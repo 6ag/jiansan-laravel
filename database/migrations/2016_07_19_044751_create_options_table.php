@@ -14,7 +14,9 @@ class CreateOptionsTable extends Migration
     {
         Schema::create('options', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('savewallpaper')->default(0);
+            $table->string('name');
+            $table->string('content');
+            $table->string('comment');
             $table->timestamps();
         });
     }
