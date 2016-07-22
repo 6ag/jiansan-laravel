@@ -23,24 +23,24 @@ class OptionController extends BaseController
      * @apiSuccess {String} comment 配置项备注
      *
      * @apiSuccessExample 成功响应:
-    {
-    "data": {
-    "id": 1,
-    "name": "app_save_wallpaper",
-    "content": "1",
-    "comment": "app端屏蔽私有api接口"
-    },
-    "meta": {
-    "status": "success",
-    "status_code": 200,
-    "message": "获取配置信息成功"
-    }
-    }
+     *   {
+     *       "data": {
+     *           "id": 1,
+     *           "name": "app_save_wallpaper",
+     *           "content": "1",
+     *           "comment": "app端屏蔽私有api接口"
+     *       },
+     *       "meta": {
+     *           "status": "success",
+     *           "status_code": 200,
+     *           "message": "获取配置信息成功"
+     *       }
+     *   }
      * @apiErrorExample 失败响应:
-    {
-    "message": "配置信息不存在",
-    "status_code": 404
-    }
+     *   {
+     *       "message": "配置信息不存在",
+     *       "status_code": 404
+     *   }
      */
     public function getSaveWallpaperStatus()
     {
