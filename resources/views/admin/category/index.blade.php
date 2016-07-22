@@ -31,7 +31,6 @@
                                         <th tabindex="0" aria-controls="example2" rowspan="1" colspan="1">ID</th>
                                         <th tabindex="0" aria-controls="example2" rowspan="1" colspan="1">分类名称</th>
                                         <th tabindex="0" aria-controls="example2" rowspan="1" colspan="1">分类别名</th>
-                                        <th tabindex="0" aria-controls="example2" rowspan="1" colspan="1">壁纸数量</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -41,7 +40,6 @@
                                         <td>{{ $category->id }}</td>
                                         <td>{{ $category->name }}</td>
                                         <td>{{ $category->alias }}</td>
-                                        <td>0</td>
                                     </tr>
                                     @endforeach
 

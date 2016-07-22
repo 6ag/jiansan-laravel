@@ -24,6 +24,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         // 后台首页
         Route::get('index', 'IndexController@index')->name('admin.index');
 
+        // 文档
+        Route::get('apidoc', function () {
+            return view('admin.apidoc');
+        });
+
         // 修改密码
         Route::any('modify', 'UserController@modify')->name('admin.modify');
 

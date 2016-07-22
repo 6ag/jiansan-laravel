@@ -6,6 +6,7 @@ use App\Http\Api\V1\Model\Category;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends BaseController
@@ -20,7 +21,7 @@ class CategoryController extends BaseController
     // get admin/category/{category} 显示单个分类信息
     public function show()
     {
-        
+
     }
 
     // get admin/category/create 添加分类 create、store是连续的操作,create获取创建前需要的数据,store存储数据
