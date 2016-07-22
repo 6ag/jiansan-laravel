@@ -66,6 +66,30 @@ php artisan db:seed
 
 访问 `http://www.jiansan.com/` ，使用管理员账号登录即可。
 
+### API接口文档
+
+本项目接口文档使用 [apidoc](https://github.com/apidoc/apidoc) 生成。
+
+**1.全局安装**
+
+安装前请确保已经安装了 `node` ，如果是使用 `homestead` 则默认已经安装有 `node` ，可直接执行下面命令进行安装 `apidoc` 。
+
+```shell
+npm install apidoc -g
+```
+
+**2.更新文档**
+
+在项目根目录执行下面命令更新API文档，这里的 `app/Http/Api/V1/Controllers` 是需要解析的源文件目录，指定后会递归查找符合注释条件的方法，并生成对应的接口文档。 `public/apidoc` 是存放接口文档的目录，我这里放到 `public` 目录下的原因是上线后可以直接访问哈。
+
+```shell
+apidoc -i app/Http/Api/V1/Controllers -o public/apidoc/
+```
+
+**3.注释格式**
+
+这个请自己去看 `apidoc` 文档，每次修改注释后，需要重新生成文档都可以执行上面的命令。然后 `http://www.jiansan.com/apidoc` 即可访问文档。
+
 ## 许可
 
 [MIT](http://opensource.org/licenses/MIT) © [六阿哥](https://github.com/6ag)
