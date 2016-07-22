@@ -21,4 +21,20 @@ class ApiHelper
             'data' => $data,
         ]);
     }
+
+    /**
+     * 元数据数组
+     * @param string $message
+     * @param string $status
+     * @param int $code
+     * @return array
+     */
+    static public function metaArray($message = '', $status = 'success', $code = 200)
+    {
+        return [
+            'status' => $status,
+            'status_code' => $code,
+            'message' => $message,
+        ];
+    }
 }
