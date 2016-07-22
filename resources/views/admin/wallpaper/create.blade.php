@@ -53,6 +53,8 @@
                                         'debug' : false, // 是否开启浏览器调试
                                         'fileTypeExts':'*.jpg;*.gif;*.bmp;*.png;*.jpeg', //允许的图片类型
                                         'buttonText' : '选择图片',
+                                        'successTimeout' : 300,
+                                        'uploadLimit' : 100,
                                         'formData' : {
                                             '_token' : '{{ csrf_token() }}'
                                         },

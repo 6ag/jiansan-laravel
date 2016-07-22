@@ -11,19 +11,27 @@ use App\Http\Requests;
 
 class CategoryController extends BaseController
 {
-
     /**
-     * @api {get} /getcategories 获取全部分类信息
-     * @apiName getcategories
+     * @api {get} /categories 获取全部分类信息
+     * @apiVersion 0.0.1
+     * @apiName categories
      * @apiGroup Category
      *
+     * @apiSampleRequest http://www.jiansan.com/api/categories
+     *
+     * @apiSuccess {String} status 状态
+     * @apiSuccess {Number} code 状态码
+     * @apiSuccess {String} message 提示信息
      * @apiSuccess {Array} data 所有数据
      * @apiSuccess {Number} data.id 分类id
      * @apiSuccess {String} data.name 分类名称
      * @apiSuccess {String} data.alias 分类别名
      *
-     * @apiSuccessExample Success-Response:
+     * @apiSuccessExample 成功响应:
         {
+            "status": "success",
+            "code": 200,
+            "message": "获取分类列表成功",
             "data": [
                 {
                     "id": 1,
@@ -88,14 +96,21 @@ class CategoryController extends BaseController
             ]
         }
      *
-     * @apiErrorExample Error-Response:
-     *     {
-     *       "error": "请求失败"
-     *     }
+     * @apiErrorExample 失败响应:
+        {
+            "status": "error",
+            "code": 404,
+            "message": "获取分类列表失败",
+            "data": null
+        }
      */
     public function getCategories()
     {
-        $categories = Category::all();
-        return $this->response->collection($categories, new CategoryTransformer());
+        $categories = Category::all(['id', 'name', 'alias']);
+        if ($categories) {
+            return ApiHelper::response($categories->toArray(), '获取分类列表成功');
+        } else {
+            return ApiHelper::response(null, '获取分类列表失败', 'error', 404);
+        }
     }
 }

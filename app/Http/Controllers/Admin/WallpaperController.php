@@ -19,6 +19,7 @@ class WallpaperController extends BaseController
         $wallpapers = DB::table('wallpapers')
             ->join('categories', 'wallpapers.category_id', '=', 'categories.id')
             ->select('wallpapers.*', 'categories.name')
+            ->orderBy('id', 'desc')
             ->paginate(12);
 
         $errors = [];

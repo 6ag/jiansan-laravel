@@ -1,7 +1,6 @@
 {
-  "name": "壁纸管理系统",
-  "title": "API文档",
-  "description":"壁纸数据调用API接口文档",
+  "name": "剑三壁纸API文档",
+  "title": "剑三壁纸API文档",
   "url" : "http://www.jiansan.com/api",
   "version": "0.0.1"
 }

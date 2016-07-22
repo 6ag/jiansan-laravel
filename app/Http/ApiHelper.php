@@ -5,18 +5,20 @@ namespace App\Http;
 class ApiHelper
 {
     /**
-     * 格式化JSON格式
-     * @param $data
-     * @param string $message
-     * @param int $code
-     * @return array
+     * 响应助手
+     * @param $data 响应数据
+     * @param string $message 响应提示信息
+     * @param string $status 响应状态
+     * @param int $code 响应状态码
+     * @return \Illuminate\Http\JsonResponse josn数据
      */
-    static public function formatJson($data, $message = '', $code = 200)
+    static public function response($data, $message = '', $status = 'success', $code = 200)
     {
-        return [
-            'data' => $data,
-            'message' => $message,
+        return \Response::json([
+            'status' => $status,
             'code' => $code,
-        ];
+            'message' => $message,
+            'data' => $data,
+        ]);
     }
 }

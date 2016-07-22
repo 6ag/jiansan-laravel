@@ -13,6 +13,9 @@ class CategoriesTableSeeder extends Seeder
     {
         DB::table('categories')->insert([
             [
+                'name' => '天策',
+                'alias' => 'tiance',
+            ],[
                 'name' => '大侠',
                 'alias' => 'daxia',
             ],[
