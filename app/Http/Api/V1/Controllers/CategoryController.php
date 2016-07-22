@@ -15,7 +15,7 @@ class CategoryController extends BaseController
      * @api {get} /categories 获取全部分类信息
      * @apiVersion 0.0.1
      * @apiName categories
-     * @apiGroup Category
+     * @apiGroup Api
      *
      * @apiSuccess {Number} id 分类id
      * @apiSuccess {String} name 分类名称

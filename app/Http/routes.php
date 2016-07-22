@@ -36,6 +36,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         // 配置
         Route::resource('option', 'OptionController');
+
+        // 反馈信息
+        Route::resource('feedback', 'FeedbackController');
     });
 });
 
@@ -53,4 +56,7 @@ $api->version('v1', ['namespace' => 'App\Http\Api\V1\Controllers'], function ($a
 
     // 获取壁纸列表
     $api->get('wallpapers/{category_id}', 'WallpaperController@getWallpapers')->name('getWallpapers');
+
+    // 提交意见反馈信息
+    $api->post('feedback', 'FeedbackController@submitFeedback')->name('submitFeedback');
 });

@@ -16,7 +16,7 @@ class OptionController extends BaseController
      * @api {get} /status 是否一键设置壁纸
      * @apiVersion 0.0.1
      * @apiName status
-     * @apiGroup Option
+     * @apiGroup Api
      *
      * @apiSuccess {String} name 配置项名称
      * @apiSuccess {String} content 配置项内容

@@ -17,7 +17,7 @@ class WallpaperController extends BaseController
      * @api {get} /wallpapers/{category_id} 获取指定分类的壁纸数据
      * @apiVersion 0.0.1
      * @apiName wallpapers
-     * @apiGroup Wallpaper
+     * @apiGroup Api
      *
      * @apiParam {Number} category_id 分类id,需要拼接到url上
      * @apiParam {Number} [page] 页码

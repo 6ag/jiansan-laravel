@@ -4,12 +4,12 @@
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                分类管理
-                <small>全部分类列表</small>
+                反馈信息管理
+                <small>全部反馈信息列表</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 仪表盘</a></li>
-                <li class="active">分类管理</li>
+                <li class="active">反馈信息管理</li>
             </ol>
         </section>
 
@@ -29,20 +29,20 @@
                                     <thead>
                                     <tr role="row">
                                         <th tabindex="0" aria-controls="example2" rowspan="1" colspan="1">ID</th>
-                                        <th tabindex="0" aria-controls="example2" rowspan="1" colspan="1">分类名称</th>
-                                        <th tabindex="0" aria-controls="example2" rowspan="1" colspan="1">分类别名</th>
-                                        <th tabindex="0" aria-controls="example2" rowspan="1" colspan="1">壁纸数量</th>
+                                        <th tabindex="0" aria-controls="example2" rowspan="1" colspan="1">联系方式</th>
+                                        <th tabindex="0" aria-controls="example2" rowspan="1" colspan="1">内容</th>
+                                        <th tabindex="0" aria-controls="example2" rowspan="1" colspan="1">时间</th>
                                     </tr>
                                     </thead>
                                     <tbody>
 
-                                    @foreach($categories as $category)
-                                    <tr role="row">
-                                        <td>{{ $category->id }}</td>
-                                        <td>{{ $category->name }}</td>
-                                        <td>{{ $category->alias }}</td>
-                                        <td>0</td>
-                                    </tr>
+                                    @foreach($feedbacks as $feedback)
+                                        <tr role="row">
+                                            <td>{{ $feedback->id }}</td>
+                                            <td>{{ $feedback->contact }}</td>
+                                            <td>{{ $feedback->content }}</td>
+                                            <td>{{ $feedback->created_at }}</td>
+                                        </tr>
                                     @endforeach
 
                                     </tbody>
@@ -52,15 +52,16 @@
 
                         <div class="row">
                             <div class="col-sm-5">
-                                <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">一共有{{ $categories->total() }}个分类</div>
+                                <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">一共有{{ $feedbacks->total() }}个反馈信息</div>
                             </div>
 
                             <div class="col-sm-7">
                                 <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-                                    {{ $categories->links() }}
+                                    {{ $feedbacks->links() }}
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <!-- /.box-body -->
@@ -70,5 +71,4 @@
 
     </div>
 @endsection
-
 

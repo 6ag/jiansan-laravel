@@ -44,14 +44,15 @@
                 </ul>
             </li>
 
-            <li class="treeview {{ Request::is('admin/option') ? 'active' : '' }}">
+            <li class="treeview {{ Request::is('admin/option') || Request::is('admin/feedback') ? 'active' : '' }}">
                 <a href="#">
                     <i class="fa fa-circle-o-notch"></i> <span> 系统管理</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
-                <ul class="treeview-menu" style="display: {{ Request::is('admin/option') ? 'block' : 'none' }};">
+                <ul class="treeview-menu" style="display: {{ Request::is('admin/option') || Request::is('admin/feedback') ? 'block' : 'none' }};">
+                    <li class="{{ Request::is('admin/feedback') ? 'active' : '' }}"><a href="{{ url('admin/feedback') }}"><i class="fa fa-reply-all"></i> 意见反馈</a></li>
                     <li class="{{ Request::is('admin/option') ? 'active' : '' }}"><a href="{{ url('admin/option') }}"><i class="fa fa-cog"></i> 系统设置</a></li>
                 </ul>
             </li>

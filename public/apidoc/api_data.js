@@ -5,7 +5,7 @@ define({ "api": [
     "title": "获取全部分类信息",
     "version": "0.0.1",
     "name": "categories",
-    "group": "Category",
+    "group": "Api",
     "success": {
       "fields": {
         "Success 200": [
@@ -50,7 +50,53 @@ define({ "api": [
       ]
     },
     "filename": "app/Http/Api/V1/Controllers/CategoryController.php",
-    "groupTitle": "Category"
+    "groupTitle": "Api"
+  },
+  {
+    "type": "post",
+    "url": "/feedback",
+    "title": "提交反馈信息",
+    "version": "0.0.1",
+    "name": "feedback",
+    "group": "Api",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "contact",
+            "description": "<p>联系方式</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "content",
+            "description": "<p>反馈内容</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "成功响应:",
+          "content": "{\n    \"data\": {\n        \"contact\":\"44334512\",\n        \"content\":\"提交一个测试反馈信息\"\n     },\n    \"meta\": {\n        \"status\": \"success\",\n        \"status_code\": 200,\n        \"message\": \"提交反馈信息成功\"\n    }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "失败响应:",
+          "content": "{\n    \"message\": \"提交反馈信息失败\",\n    \"status_code\": 404\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Http/Api/V1/Controllers/FeedbackController.php",
+    "groupTitle": "Api"
   },
   {
     "type": "get",
@@ -58,7 +104,7 @@ define({ "api": [
     "title": "是否一键设置壁纸",
     "version": "0.0.1",
     "name": "status",
-    "group": "Option",
+    "group": "Api",
     "success": {
       "fields": {
         "Success 200": [
@@ -103,7 +149,7 @@ define({ "api": [
       ]
     },
     "filename": "app/Http/Api/V1/Controllers/OptionController.php",
-    "groupTitle": "Option"
+    "groupTitle": "Api"
   },
   {
     "type": "get",
@@ -111,7 +157,7 @@ define({ "api": [
     "title": "获取指定分类的壁纸数据",
     "version": "0.0.1",
     "name": "wallpapers",
-    "group": "Wallpaper",
+    "group": "Api",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -183,6 +229,6 @@ define({ "api": [
       ]
     },
     "filename": "app/Http/Api/V1/Controllers/WallpaperController.php",
-    "groupTitle": "Wallpaper"
+    "groupTitle": "Api"
   }
 ] });
