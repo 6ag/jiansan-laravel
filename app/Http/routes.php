@@ -7,9 +7,15 @@ Route::get('/', function () {
 // 后台路由组
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
-    // 注册、登录、退出
-    Route::any('register', 'UserController@register')->name('admin.register');
+    Route::group(['middleware' => ['check.register']], function () {
+        // 注册
+        Route::any('register', 'UserController@register')->name('admin.register');
+    });
+
+    // 登录
     Route::any('login', 'UserController@login')->name('admin.login');
+
+    // 注销
     Route::get('logout', 'UserController@logout')->name('admin.logout');
 
     // 已经登录
@@ -17,6 +23,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         // 后台首页
         Route::get('index', 'IndexController@index')->name('admin.index');
+
+        // 修改密码
+        Route::any('modify', 'UserController@modify')->name('admin.modify');
 
         // 壁纸
         Route::resource('wallpaper', 'WallpaperController');

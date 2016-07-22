@@ -21,7 +21,7 @@ class UserController extends BaseController
     public function register(Request $request)
     {
         if ($request->method() === 'POST') {
-
+            
             // 验证表单
             $validator = Validator::make($request->all(), [
                 'name' => ['required', 'between:5,16', 'unique:users'],
@@ -49,7 +49,7 @@ class UserController extends BaseController
 
             return redirect()->route('admin.login')->with(['email' => $request->email, 'password' => $request->password]);
         }
-        return view('admin.login.register');
+        return view('admin.user.register');
     }
 
     /**
@@ -94,7 +94,7 @@ class UserController extends BaseController
             return back()->with('errors', '管理员密码错误');
         }
 
-        return view('admin.login.login');
+        return view('admin.user.login');
     }
 
     /**
@@ -106,4 +106,41 @@ class UserController extends BaseController
         Session::forget('user');
         return redirect()->route('admin.login');
     }
+
+    /**
+     * 修改密码
+     * @param Request $request
+     * @return $this
+     */
+    public function modify(Request $request)
+    {
+        if ($input = $request->all()) {
+            $rules = [
+                'password' => 'required|between:6,20|confirmed',
+            ];
+            $message = [
+                'password.required' => '新密码不能为空!',
+                'password.between' => '新密码必须在6-20位之间',
+                'password.confirmed' => '新密码和确认密码不一致',
+            ];
+
+            $validator = Validator::make($input, $rules, $message);
+
+            if ($validator->passes()) {
+                $user = Session::get('user');
+                if ($user && Hash::check($request->password_o, $user->password)) {
+                    $user->password = bcrypt($input['password']);
+                    $user->update();
+                    return back()->with('errors', '修改密码成功!');
+                } else {
+                    return back()->with('errors', '原密码错误!');
+                }
+            } else {
+                return back()->withErrors($validator);
+            }
+        } else {
+            return view('admin.user.modify');
+        }
+    }
+    
 }
