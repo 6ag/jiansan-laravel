@@ -113,8 +113,7 @@ class WallpaperController extends BaseController
         }
 
         // 全部处理完后
-        return redirect()->route('admin.wallpaper.index');
-
+        return redirect()->route('admin.wallpaper.create');
     }
 
     // get admin/wallpaper/{wallpaper}/edit 编辑壁纸 edit、update也是一组连续的操作,edit获取需要编辑的数据的信息,update更新修改后的信息

@@ -38,7 +38,7 @@ $api->version('v1', ['namespace' => 'App\Http\Api\V1\Controllers'], function ($a
 
     // app是否一键设置壁纸
     $api->get('status', 'OptionController@getSaveWallpaperStatus')->name('getSaveWallpaperStatus');
-
+    
     // 获取分类列表
     $api->get('categories', 'CategoryController@getCategories')->name('getCategories');
 
