@@ -43,7 +43,7 @@
                                         {{ csrf_field() }}
                                         {{ method_field('put') }}
                                         <div class="thumbnail">
-                                            <img class="img-responsive" src="{{ url($wallpaper->bigpath) }}" style="height: 300px;"/>
+                                            <a href="{{ url($wallpaper->bigpath) }}" target="_blank"><img class="img-responsive" src="{{ url($wallpaper->smallpath) }}" style="height: 300px;"/></a>
                                             <div class="caption">
                                                 <div class="form-group">
                                                     <input style="width: 100%; margin-bottom: 5px;" class="form-control" type="text" value="{{ $wallpaper->bigpath }}">
