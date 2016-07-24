@@ -37,13 +37,13 @@
                         </div>
                         <div class="row">
 
-                            @foreach($wallpapers as $wallpaper)
+                            @foreach($wallpapers as $key => $wallpaper)
                                 <div class="col-lg-2">
                                     <form role="form" action="{{ url('admin/wallpaper/' . $wallpaper->id) }}" method="post">
                                         {{ csrf_field() }}
                                         {{ method_field('put') }}
                                         <div class="thumbnail">
-                                            <a href="{{ url($wallpaper->bigpath) }}" target="_blank"><img class="img-responsive" src="{{ url($wallpaper->smallpath) }}" style="height: 300px;"/></a>
+                                            <a href="javascript:;" onclick="showBigImage('{{ url($wallpaper->bigpath) }}')" target="_blank"><img class="img-responsive" src="{{ url($wallpaper->smallpath) }}" style="height: 300px;"/></a>
                                             <div class="caption">
                                                 <div class="form-group">
                                                     <input style="width: 100%; margin-bottom: 5px;" class="form-control" type="text" value="{{ $wallpaper->bigpath }}">
@@ -105,6 +105,17 @@
             });
         }, function(){
             // 取消
+        });
+    }
+
+    function showBigImage(bigPath) {
+        layer.open({
+            type: 1,
+            title: false,
+            closeBtn: 0,
+            shadeClose: true,
+            skin: 'content',
+            content: "<img style='width: 375px; height: 667px; position:fixed; float: left; margin: -500px 0 0 -200px;' src=" + bigPath +  ">"
         });
     }
 </script>
