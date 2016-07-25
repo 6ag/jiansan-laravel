@@ -115,7 +115,7 @@
             closeBtn: 0,
             shadeClose: true,
             skin: 'content',
-            content: "<img style='width: 375px; height: 667px; position:fixed; float: left; margin: -500px 0 0 -200px;' src=" + bigPath +  ">"
+            content: "<img style='width: 375px; height: 667px; position: fixed; margin: -500px 0 0 -200px;' src=" + bigPath +  ">"
         });
     }
 </script>

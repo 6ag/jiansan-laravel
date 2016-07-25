@@ -166,7 +166,7 @@ define({ "api": [
             "type": "Number",
             "optional": false,
             "field": "category_id",
-            "description": "<p>分类id,需要拼接到url上</p>"
+            "description": "<p>分类id,需要拼接到url上。0表示根据浏览量倒序查询所有分类壁纸</p>"
           },
           {
             "group": "Parameter",

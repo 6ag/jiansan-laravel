@@ -19,7 +19,7 @@ class WallpaperController extends BaseController
      * @apiName wallpapers
      * @apiGroup Api
      *
-     * @apiParam {Number} category_id 分类id,需要拼接到url上
+     * @apiParam {Number} category_id 分类id,需要拼接到url上。0表示根据浏览量倒序查询所有分类壁纸
      * @apiParam {Number} [page] 页码
      *
      * @apiSuccess {String} id 分类名称
@@ -141,7 +141,13 @@ class WallpaperController extends BaseController
      */
     public function getWallpapers($category_id)
     {
-        $wallpapers = Wallpaper::where('category_id', $category_id)->orderBy('id', 'desc')->paginate(10);
-        return $this->response->paginator($wallpapers, new WallpaperTransformer())->setMeta(ApiHelper::metaArray('获取壁纸列表成功'));
+        if ($category_id != 0) {
+            $wallpapers = Wallpaper::where('category_id', $category_id)->orderBy('id', 'desc')->paginate(10);
+            return $this->response->paginator($wallpapers, new WallpaperTransformer())->setMeta(ApiHelper::metaArray('获取壁纸列表成功'));
+        } else {
+            $wallpapers = Wallpaper::orderBy('view', 'desc')->paginate(10);
+            return $this->response->paginator($wallpapers, new WallpaperTransformer())->setMeta(ApiHelper::metaArray('获取壁纸列表成功'));
+        }
+
     }
 }
