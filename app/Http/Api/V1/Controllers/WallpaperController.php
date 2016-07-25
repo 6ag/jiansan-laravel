@@ -142,10 +142,10 @@ class WallpaperController extends BaseController
     public function getWallpapers($category_id)
     {
         if ($category_id != 0) {
-            $wallpapers = Wallpaper::where('category_id', $category_id)->orderBy('id', 'desc')->paginate(10);
+            $wallpapers = Wallpaper::where('category_id', $category_id)->orderBy('id', 'desc')->paginate(21);
             return $this->response->paginator($wallpapers, new WallpaperTransformer())->setMeta(ApiHelper::metaArray('获取壁纸列表成功'));
         } else {
-            $wallpapers = Wallpaper::orderBy('view', 'desc')->paginate(10);
+            $wallpapers = Wallpaper::orderBy('view', 'desc')->paginate(21);
             return $this->response->paginator($wallpapers, new WallpaperTransformer())->setMeta(ApiHelper::metaArray('获取壁纸列表成功'));
         }
 
