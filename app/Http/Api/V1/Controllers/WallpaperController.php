@@ -22,7 +22,8 @@ class WallpaperController extends BaseController
      * @apiParam {Number} category_id 分类id,需要拼接到url上。0表示根据浏览量倒序查询所有分类壁纸
      * @apiParam {Number} [page] 页码
      *
-     * @apiSuccess {String} id 分类名称
+     * @apiSuccess {String} id 壁纸id
+     * @apiSuccess {String} category_id 分类id
      * @apiSuccess {String} bigpath 大图路径
      * @apiSuccess {String} smallpath 小图路径
      * @apiSuccess {Number} view 浏览量
@@ -147,6 +148,62 @@ class WallpaperController extends BaseController
         } else {
             $wallpapers = Wallpaper::orderBy('view', 'desc')->paginate(21);
             return $this->response->paginator($wallpapers, new WallpaperTransformer())->setMeta(ApiHelper::metaArray('获取壁纸列表成功'));
+        }
+    }
+
+    /**
+     * @api {get} /show/{id} 根据壁纸id显示壁纸
+     * @apiVersion 0.0.1
+     * @apiName show
+     * @apiGroup Api
+     *
+     * @apiSuccess {String} id 壁纸id
+     * @apiSuccess {String} category_id 分类id
+     * @apiSuccess {String} bigpath 大图路径
+     * @apiSuccess {String} smallpath 小图路径
+     * @apiSuccess {Number} view 浏览量
+     *
+     * @apiSuccessExample 成功响应:
+     *
+     *   {
+     *       "data": {
+     *           "id": 1,
+     *           "category_id": 1,
+     *           "bigpath": "uploads/daxia/689a0dd035e1845b96b3dc18504c077c.jpg",
+     *           "smallpath": "uploads/daxia/small689a0dd035e1845b96b3dc18504c077c.jpg",
+     *           "view": 1,
+     *           "created_at": {
+     *               "date": "2016-07-22 06:37:31.000000",
+     *               "timezone_type": 3,
+     *               "timezone": "PRC"
+     *           },
+     *           "updated_at": {
+     *               "date": "2016-07-22 06:37:31.000000",
+     *               "timezone_type": 3,
+     *               "timezone": "PRC"
+     *           }
+     *       },
+     *       "meta": {
+     *           "status": "success",
+     *           "status_code": 200,
+     *           "message": "获取壁纸列表成功"
+     *       }
+     *   }
+     *
+     *  @apiErrorExample 失败响应:
+     *   {
+     *       "message": "壁纸不存在",
+     *       "status_code": 404
+     *   }
+     */
+    public function show($id)
+    {
+        $wallpaper = Wallpaper::findOrfail($id);
+        if ($wallpaper) {
+            $wallpaper->increment('view');
+            return $this->response->item($wallpaper, new WallpaperTransformer())->setMeta(ApiHelper::metaArray('获取壁纸列表成功'));
+        } else {
+            return $this->response->errorNotFound('壁纸不存在');
         }
 
     }

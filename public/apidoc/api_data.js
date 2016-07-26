@@ -100,6 +100,73 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/show/{id}",
+    "title": "根据壁纸id显示壁纸",
+    "version": "0.0.1",
+    "name": "show",
+    "group": "Api",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>壁纸id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "category_id",
+            "description": "<p>分类id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "bigpath",
+            "description": "<p>大图路径</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "smallpath",
+            "description": "<p>小图路径</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "view",
+            "description": "<p>浏览量</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "成功响应:",
+          "content": "\n{\n    \"data\": {\n        \"id\": 1,\n        \"category_id\": 1,\n        \"bigpath\": \"uploads/daxia/689a0dd035e1845b96b3dc18504c077c.jpg\",\n        \"smallpath\": \"uploads/daxia/small689a0dd035e1845b96b3dc18504c077c.jpg\",\n        \"view\": 1,\n        \"created_at\": {\n            \"date\": \"2016-07-22 06:37:31.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"PRC\"\n        },\n        \"updated_at\": {\n            \"date\": \"2016-07-22 06:37:31.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"PRC\"\n        }\n    },\n    \"meta\": {\n        \"status\": \"success\",\n        \"status_code\": 200,\n        \"message\": \"获取壁纸列表成功\"\n    }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "失败响应:",
+          "content": "{\n    \"message\": \"壁纸不存在\",\n    \"status_code\": 404\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Http/Api/V1/Controllers/WallpaperController.php",
+    "groupTitle": "Api"
+  },
+  {
+    "type": "get",
     "url": "/status",
     "title": "是否一键设置壁纸",
     "version": "0.0.1",
@@ -186,7 +253,14 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "id",
-            "description": "<p>分类名称</p>"
+            "description": "<p>壁纸id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "category_id",
+            "description": "<p>分类id</p>"
           },
           {
             "group": "Success 200",

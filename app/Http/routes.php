@@ -54,14 +54,17 @@ $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', ['namespace' => 'App\Http\Api\V1\Controllers'], function ($api) {
 
     // app是否一键设置壁纸
-    $api->get('status', 'OptionController@getSaveWallpaperStatus')->name('getSaveWallpaperStatus');
+    $api->get('status', 'OptionController@getSaveWallpaperStatus');
     
     // 获取分类列表
-    $api->get('categories', 'CategoryController@getCategories')->name('getCategories');
+    $api->get('categories', 'CategoryController@getCategories');
 
     // 获取壁纸列表
-    $api->get('wallpapers/{category_id}', 'WallpaperController@getWallpapers')->name('getWallpapers');
+    $api->get('wallpapers/{category_id}', 'WallpaperController@getWallpapers');
 
     // 提交意见反馈信息
-    $api->post('feedback', 'FeedbackController@submitFeedback')->name('submitFeedback');
+    $api->post('feedback', 'FeedbackController@submitFeedback');
+
+    // 显示单个壁纸
+    $api->get('show/{id}', 'WallpaperController@show');
 });
