@@ -28,22 +28,13 @@
                 <div class="box-body">
                     <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap">
                         <div class="row">
-                            <div class="col-sm-6">
-
-                            </div>
-                            <div class="col-sm-6">
-
-                            </div>
-                        </div>
-                        <div class="row">
-
                             @foreach($wallpapers as $key => $wallpaper)
                                 <div class="col-lg-2">
                                     <form role="form" action="{{ url('admin/wallpaper/' . $wallpaper->id) }}" method="post">
                                         {{ csrf_field() }}
                                         {{ method_field('put') }}
                                         <div class="thumbnail">
-                                            <a href="javascript:;" onclick="showBigImage('{{ url($wallpaper->bigpath) }}')" target="_blank"><img class="img-responsive" src="{{ url($wallpaper->smallpath) }}" style="height: 300px;"/></a>
+                                            <a href="javascript:;" onclick="showBigImage('{{ url($wallpaper->bigpath) }}')"><img class="img-responsive" src="{{ url($wallpaper->smallpath) }}" style="height: 300px;"/></a>
                                             <div class="caption">
                                                 <div class="form-group">
                                                     <input style="width: 100%; margin-bottom: 5px;" class="form-control" type="text" value="{{ $wallpaper->bigpath }}">
@@ -95,7 +86,7 @@
         layer.confirm('您确定要删除这个壁纸吗？', {
             btn: ['确定','取消'] //按钮
         }, function(){
-            $.post("{{url('admin/wallpaper')}}/" + id, {'_token' : '{{ csrf_token() }}', '_method' : 'delete'}, function(data) {
+            $.post("{{ url('admin/wallpaper') }}/" + id, {'_token' : '{{ csrf_token() }}', '_method' : 'delete'}, function(data) {
                 if (data.status == 1) {
                     layer.msg(data.msg, {icon: 6});
                 } else {
@@ -118,6 +109,7 @@
             content: "<img style='width: 375px; height: 667px; position: fixed; margin: -500px 0 0 -200px;' src=" + bigPath +  ">"
         });
     }
+
 </script>
 
 
