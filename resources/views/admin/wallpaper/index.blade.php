@@ -28,6 +28,22 @@
                 <div class="box-body">
                     <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap">
                         <div class="row">
+                            <form action="" method="get">
+                                <div class="col-md-2">
+                                    <select class="form-control" name="category_id">
+                                        <option value="0">所有分类</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}" {{ (isset($currentCategory) && $currentCategory->id == $category->id) ? 'selected' : '' }}>{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-1">
+                                    <button class="btn btn-danger">筛选</button>
+                                </div>
+                            </form>
+                        </div>
+                        <br />
+                        <div class="row">
                             @foreach($wallpapers as $key => $wallpaper)
                                 <div class="col-lg-2">
                                     <form role="form" action="{{ url('admin/wallpaper/' . $wallpaper->id) }}" method="post">

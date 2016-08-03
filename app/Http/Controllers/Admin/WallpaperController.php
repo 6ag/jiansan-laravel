@@ -14,17 +14,32 @@ use Mockery\CountValidator\Exception;
 class WallpaperController extends BaseController
 {
     // get admin/wallpaper  全部壁纸列表
-    public function index()
+    public function index(Request $request)
     {
-        $wallpapers = DB::table('wallpapers')
-            ->join('categories', 'wallpapers.category_id', '=', 'categories.id')
-            ->select('wallpapers.*', 'categories.name')
-            ->orderBy('id', 'desc')
-            ->paginate(12);
+        if (empty($request->category_id) || $request->category_id == 0) {
+            $wallpapers = DB::table('wallpapers')
+                ->join('categories', 'wallpapers.category_id', '=', 'categories.id')
+                ->select('wallpapers.*', 'categories.name')
+                ->orderBy('id', 'desc')
+                ->paginate(12);
 
-        $errors = [];
-        $categories = Category::all();
-        return view('admin/wallpaper/index', compact('errors', 'wallpapers', 'categories'));
+            $errors = [];
+            $categories = Category::all();
+            return view('admin/wallpaper/index', compact('errors', 'wallpapers', 'categories'));
+        } else {
+            $wallpapers = DB::table('wallpapers')
+                ->join('categories', 'wallpapers.category_id', '=', 'categories.id')
+                ->select('wallpapers.*', 'categories.name')
+                ->where('category_id', $request->category_id)
+                ->orderBy('id', 'desc')
+                ->paginate(12);
+
+            $errors = [];
+            $categories = Category::all();
+            $currentCategory = Category::findOrFail($request->category_id);
+            return view('admin/wallpaper/index', compact('errors', 'wallpapers', 'categories', 'currentCategory'));
+
+        }
     }
 
     // get admin/wallpaper/{wallpaper} 显示单个壁纸信息
