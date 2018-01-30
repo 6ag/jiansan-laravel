@@ -66,13 +66,12 @@ class UserController extends BaseController
             // 验证输入
             $validator = Validator::make($request->all(), [
                 'email' => ['required', 'email', 'exists:users'],
-                'password' => ['required', 'between:6,16'],
+               
             ], [
                 'email.exists' => '邮箱不存在',
                 'email.required' => '邮箱为必填项',
                 'email.email' => '邮箱格式不合法',
-                'password.required' => '密码为必填项',
-                'password.between' => '密码长度必须是6-16',
+                
             ]);
             if ($validator->fails()) {
                 return back()->withErrors($validator);
@@ -80,17 +79,14 @@ class UserController extends BaseController
 
             // 查询用户信息
             $user = User::where('email', $request->email)->where('is_admin', 1)->first();
-            if ($user && Hash::check($request->password, $user->password)) {
+            
                 // 登录成功
-                if (Hash::needsRehash($user->password)) {
-                    $user->password = bcrypt($request->password);
-                    $user->save();
-                }
+             
                 
                 Session::put('user', $user);
                 return redirect()->route('admin.index');
-            }
-            return back()->with('errors', '管理员密码错误');
+            
+           
         }
 
         return view('admin.user.login');
